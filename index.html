@@ -3,97 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>رحلة الأرقام إلى مدينة الملاهي 🎡 — لعبة القسمة المطوّلة (إصدار مُحسَّن)</title>
+<title>رحلة الأرقام إلى مدينة الملاهي 🎡 — لعبة القسمة المطوّلة </title>
 <style>
-  :root{
-    --bg:#fff9f1;
-    --panel:#ffffff;
-    --accent:#6a5acd;
-    --accent2:#00a67d;
-    --text:#1f2d3d;
-    --muted:#6b7280;
-    --bad:#c2410c;
-    --good:#2563eb;
-    --shadow:0 8px 24px rgba(0,0,0,.08);
-  }
+  :root{--bg:#fff9f1;--panel:#ffffff;--accent:#6a5acd;--text:#1f2d3d;--muted:#6b7280;--shadow:0 8px 24px rgba(0,0,0,.08)}
   *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family: "Tahoma", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-    background: var(--bg);
-    color:var(--text);
-    line-height:1.8;
-  }
-  header{
-    background: linear-gradient(135deg, #ffd27f 0%, #ff9fb2 50%, #c1b4ff 100%);
-    padding:24px 16px 28px;
-    text-align:center;
-    color:#1b1732;
-  }
-  h1{margin:0 0 6px;font-size:28px}
-  .sub{opacity:.9;font-size:16px}
+  body{margin:0;font-family:"Tahoma","Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.8}
+  header{background:linear-gradient(135deg,#ffd27f 0%,#ff9fb2 50%,#c1b4ff 100%);padding:24px 16px 28px;text-align:center;color:#1b1732}
+  h1{margin:0 0 6px;font-size:28px}.sub{opacity:.9;font-size:16px}
   .container{max-width:1100px;margin:-24px auto 80px;padding:0 16px}
-  .card{
-    background:var(--panel);
-    border-radius:16px;
-    box-shadow:var(--shadow);
-    padding:18px;
-    margin:14px 0;
-  }
-  .row{display:flex;flex-wrap:wrap;gap:16px}
-  .col{flex:1 1 320px}
+  .card{background:var(--panel);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin:14px 0}
+  .row{display:flex;flex-wrap:wrap;gap:16px}.col{flex:1 1 320px}
   label{display:block;margin:.25rem 0 .35rem;font-weight:700}
-  input{
-    width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;
-    font-size:18px;
-  }
-  button{
-    border:0;border-radius:12px;padding:12px 16px;font-size:16px;cursor:pointer;
-    transition:.2s; box-shadow:var(--shadow);
-  }
-  button.primary{background:var(--accent);color:#fff}
-  button.secondary{background:#eef2ff;color:#4338ca}
-  button.ghost{background:#f1f5f9;color:#0f172a}
-  button:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.2)}
+  input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;font-size:18px}
+  button{border:0;border-radius:12px;padding:12px 16px;font-size:16px;cursor:pointer;transition:.2s;box-shadow:var(--shadow)}
+  .primary{background:var(--accent);color:#fff}.secondary{background:#eef2ff;color:#4338ca}.ghost{background:#f1f5f9;color:#0f172a}
+  button:disabled{opacity:.5;cursor:not-allowed}
   .hint{color:var(--muted);font-size:14px}
-  .pill{
-    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-    background:#f0fdf4;color:#14532d;border:1px dashed #86efac;margin:4px 6px 0 0;font-size:14px
-  }
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fefce8;border:1px dashed #fde68a;color:#7c2d12}
   .board{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap}
-  .gate,.queue,.work{
-    flex:1 1 280px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px;
-  }
+  .gate,.queue,.work{flex:1 1 280px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px}
   .title{font-weight:800;margin-bottom:8px}
   .digits{display:flex;gap:8px;flex-wrap:wrap}
-  .digit{
-    min-width:44px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;
-    text-align:center;font-weight:800;font-size:20px;box-shadow:var(--shadow);
-  }
+  .digit{min-width:44px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;text-align:center;font-weight:800;font-size:20px;box-shadow:var(--shadow)}
   .digit.active{outline:3px solid #60a5fa}
-  .stack{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .qbtns{display:grid;grid-template-columns:repeat(5,minmax(56px,1fr));gap:8px;margin-top:8px}
   .qbtns button{padding:10px 0;font-weight:800;background:#e0f2fe;color:#075985}
-  .log{
-    max-height:220px;overflow:auto;border:1px dashed #e5e7eb;border-radius:12px;padding:8px;background:#fff
-  }
-  .math{
-    display:flex;align-items:flex-end;gap:10px;font-family:"Consolas","Courier New",monospace;
-    background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;min-height:70px
-  }
+  .log{max-height:220px;overflow:auto;border:1px dashed #e5e7eb;border-radius:12px;padding:8px;background:#fff}
+  .math{display:flex;align-items:flex-end;gap:10px;font-family:"Consolas","Courier New",monospace;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:10px;min-height:70px}
   .math .item{padding:0 6px}
-  .badge{display:inline-block;background:#fef3c7;color:#92400e;padding:4px 8px;border-radius:10px;margin-inline-start:6px}
-  .ok{background:#dcfce7;color:#14532d}
-  .no{background:#fee2e2;color:#7f1d1d}
-  .flex{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .ok{background:#dcfce7;color:#14532d}.no{background:#fee2e2;color:#7f1d1d}
   .footer-note{font-size:12px;color:#6b7280;text-align:center;margin-top:10px}
-  .kbd{font-family:monospace; background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:0 6px}
+  .status{margin-top:8px}
 </style>
 </head>
 <body>
 <header>
   <h1>رحلة الأرقام إلى مدينة الملاهي 🎡</h1>
-  <div class="sub">لعبة تفاعلية تُحاكي القسمة المطوّلة عبر قصة "الحارس" (المقسوم عليه) و"دفتر الدخول" (الناتج) و"الباقي" 🎢</div>
 </header>
 
 <div class="container">
@@ -101,11 +46,11 @@
     <div class="row">
       <div class="col">
         <label>المقسوم (الرقم الذي يريد الدخول):</label>
-        <input id="dividend" type="text" value="845" inputmode="numeric" autocomplete="off" />
+        <input id="dividend" type="text" value="234" inputmode="numeric" autocomplete="off" />
       </div>
       <div class="col">
         <label>المقسوم عليه (الحارس عند البوابة):</label>
-        <input id="divisor" type="number" value="7" min="2" max="99" />
+        <input id="divisor" type="text" value="3" inputmode="numeric" />
       </div>
     </div>
     <div class="row" style="margin-top:10px">
@@ -113,10 +58,8 @@
         <button id="startBtn" class="primary" onclick="startGame()">ابدئي الرحلة 🚀</button>
         <button class="ghost" onclick="resetGame()">إعادة ضبط</button>
       </div>
-      <div class="col" style="display:flex;justify-content:flex-end;align-items:center">
-        <span class="pill">💡 اختصارات لوحة المفاتيح: <span class="kbd">Enter</span> لإنزال الرقم، والأرقام <span class="kbd">0–9</span> للاختيار.</span>
-      </div>
     </div>
+    <div id="status" class="status"></div>
   </div>
 
   <div class="card">
@@ -129,7 +72,7 @@
     <div class="queue">
       <div class="title">طابور الأرقام (المقسوم)</div>
       <div id="queue" class="digits"></div>
-      <div style="margin-top:10px" class="flex">
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
         <button id="bringBtn" class="secondary" onclick="bringDown()" disabled>أنزلي الرقم التالي ⬇️</button>
         <span id="bringMsg" class="hint"></span>
       </div>
@@ -157,56 +100,50 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="title">طريقة اللعب سريعًا</div>
-    <ol>
-      <li>أدخلي المقسوم والمقسوم عليه ثم اضغطي <strong>ابدئي الرحلة</strong>.</li>
-      <li>اضغطي <strong>أنزلي الرقم التالي</strong> حتى يصبح العدد الحالي ≥ المقسوم عليه.</li>
-      <li>اختاري الرقم الصحيح لعدد مرات دخول الحارس. بعدها يتم الطرح تلقائيًا.</li>
-      <li>استمري حتى تنتهي الأرقام. سيظهر الناتج والباقي في الأعلى مع تهنئة 🎉.</li>
-    </ol>
-  </div>
-
-  <div class="footer-note">مناسب للعرض على السبورة الذكية أو أجهزة الطالبات — يعمل دون إنترنت.</div>
 
 </div>
 
 <script>
-  let state = {
-    digits: [], idx: 0,
-    divisor: 0,
-    current: "",
-    quotient: "",
-    remainder: 0,
-    done:false,
-    awaitingChoice:false
-  };
+  // تحويل الأرقام العربية/الفارسية إلى لاتينية وجمع الأرقام فقط (بدون أي إضافات)
+  function toAsciiDigitsOnly(s){
+    const map = {
+      '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9',
+      '۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9'
+    };
+    let out = "";
+    for(const ch of String(s||"")){
+      if(ch >= '0' && ch <= '9'){ out += ch; continue; }
+      if(map[ch] !== undefined){ out += map[ch]; continue; }
+      // غير ذلك نتجاهله
+    }
+    return out;
+  }
+
+  let state = {digits:[],idx:0,divisor:0,current:"",quotient:"",remainder:0,done:false,awaitingChoice:false};
+
+  function setStatus(msg){
+    const el = document.getElementById('status');
+    el.innerHTML = msg ? `<span class="pill">ℹ️ ${msg}</span>` : "";
+  }
 
   function logMsg(html){
-    const el = document.getElementById('log');
-    const row = document.createElement('div');
-    row.innerHTML = html;
-    el.prepend(row);
+    const el = document.getElementById('log'); const row = document.createElement('div');
+    row.innerHTML = html; el.prepend(row);
   }
 
   function paintQueue(){
-    const q = document.getElementById('queue');
-    q.innerHTML = "";
+    const q = document.getElementById('queue'); q.innerHTML = "";
     state.digits.forEach((d,i)=>{
       const div = document.createElement('div');
-      div.className = "digit" + (i===state.idx?" active":"");
-      div.textContent = d;
-      q.appendChild(div);
+      div.className = "digit" + (i===state.idx?" active":""); div.textContent = d; q.appendChild(div);
     });
   }
 
   function paintMultiples(){
-    const m = document.getElementById('multiples');
-    m.innerHTML = "";
+    const m = document.getElementById('multiples'); m.innerHTML = "";
     if(!state.divisor) return;
     for(let i=1;i<=10;i++){
-      const div = document.createElement('div');
-      div.className="digit";
+      const div = document.createElement('div'); div.className="digit";
       div.textContent = `${state.divisor} × ${i} = ${state.divisor*i}`;
       m.appendChild(div);
     }
@@ -220,20 +157,21 @@
   }
 
   function startGame(){
-    const dividend = document.getElementById('dividend').value.replace(/\\s+/g,'');
-    const divisor = parseInt(document.getElementById('divisor').value,10);
+    const rawDividend = document.getElementById('dividend').value;
+    const rawDivisor = document.getElementById('divisor').value;
 
-    if(!/^\\d+$/.test(dividend)){
-      alert("الرجاء إدخال المقسوم كأرقام فقط.");
+    const dividendStr = toAsciiDigitsOnly(rawDividend);
+    const divisorStr  = toAsciiDigitsOnly(rawDivisor);
+
+    const divisor = Number(divisorStr);
+    if(!Number.isFinite(divisor) || divisor === 0){
+      setStatus("أدخلي رقمًا صحيحًا للحارس (المقسوم عليه) وغير صفري مثل 2 أو 3.");
       return;
     }
-    if(!Number.isFinite(divisor) || divisor < 2 || divisor > 99){
-      alert("الرجاء إدخال مقسوم عليه بين 2 و 99.");
-      return;
-    }
+    setStatus("");
 
     state = {
-      digits: dividend.split('').map(x=>+x),
+      digits: (dividendStr || "0").split(""),
       idx:0,
       divisor:divisor,
       current:"",
@@ -256,8 +194,6 @@
 
   function resetGame(){
     state = {digits:[],idx:0,divisor:0,current:"",quotient:"",remainder:0,done:false,awaitingChoice:false};
-    document.getElementById('dividend').value = "845";
-    document.getElementById('divisor').value = "7";
     document.getElementById('multiples').innerHTML="";
     document.getElementById('queue').innerHTML="";
     document.getElementById('choices').innerHTML="";
@@ -266,45 +202,37 @@
     document.getElementById('bringBtn').disabled = true;
     document.getElementById('bringMsg').textContent = "";
     document.getElementById('log').innerHTML="";
+    setStatus("");
     updateTop();
   }
 
   function bringDown(){
     if(state.done) return;
-    if(state.awaitingChoice){
-      // أمان إضافي في حال تمكّن المستخدم من النقر عبر لوحة المفاتيح
-      return;
-    }
+    if(state.awaitingChoice){ return; }
     if(state.idx >= state.digits.length){
       document.getElementById('bringMsg').textContent = "لا مزيد من الأرقام في الطابور.";
       return;
     }
-    // ضم الرقم التالي
     state.current = String(state.current||"") + String(state.digits[state.idx]);
-    logMsg(`🎫 انضم الرقم <strong>${state.digits[state.idx]}</strong> من الطابور ➜ أصبح العدد الحالي <strong>${state.current}</strong>.`);
+    logMsg(`🎫 انضم الرقم <strong>${state.digits[state.idx]}</strong> من الطابور ➜ أصبح الحالي <strong>${state.current}</strong>.`);
     state.idx += 1;
     paintQueue();
     updateTop();
 
-    // هل العدد الحالي أصغر من الحارس؟
-    const cur = parseInt(state.current,10);
+    const cur = Number(state.current);
     if(cur < state.divisor && state.idx < state.digits.length){
-      // نضيف صفرًا للناتج ونطلب إنزال رقم آخر
       state.quotient += "0";
-      logMsg(`⏳ العدد <strong>${cur}</strong> أصغر من الحارس <strong>${state.divisor}</strong> ➜ سجّل الحارس <span class="badge">0</span> في دفتر الدخول (انتظار صديقة أخرى).`);
+      logMsg(`⏳ ${cur} أصغر من ${state.divisor} ➜ سجّل الحارس 0 في الدفتر.`);
       updateTop();
-      document.getElementById('bringMsg').textContent = "أحسنتِ! ما يزال العدد صغيرًا — أنزلي رقمًا آخر.";
+      document.getElementById('bringMsg').textContent = "أحسنتِ! أنزلي رقمًا آخر.";
       document.getElementById('choiceWrap').style.display = "none";
       return;
     }
 
-    // إذا أصبح الحالي كافيًا لاختيار عدد المرات
     if(cur >= state.divisor){
       showChoices();
-      document.getElementById('bringMsg').textContent = "الآن اختاري كم مرة يدخل الحارس في العدد الحالي.";
+      document.getElementById('bringMsg').textContent = "اختاري كم مرة يدخل الحارس.";
     }else{
-      // لا مزيد من الأرقام ومع ذلك أصغر من المقسوم عليه
-      // هذا سيكون الباقي النهائي
       finish(true);
     }
   }
@@ -313,112 +241,61 @@
     state.awaitingChoice = true;
     document.getElementById('bringBtn').disabled = true;
 
-    const cur = parseInt(state.current,10);
+    const cur = Number(state.current);
     const correct = Math.floor(cur / state.divisor);
     const set = new Set([correct]);
     while(set.size<8){
-      const r = Math.max(0, correct + Math.floor(Math.random()*7)-3); // بعض المشتتات
+      const r = Math.max(0, correct + Math.floor(Math.random()*7)-3);
       set.add(r);
     }
     const arr = Array.from(set).slice(0,8).sort((a,b)=>a-b);
-    const wrap = document.getElementById('choices');
-    wrap.innerHTML = "";
+    const wrap = document.getElementById('choices'); wrap.innerHTML = "";
     arr.forEach(n=>{
-      const b = document.createElement('button');
-      b.textContent = n;
-      b.onclick = ()=> chooseQuotient(n);
-      b.setAttribute('data-choice', n);
-      wrap.appendChild(b);
+      const b = document.createElement('button'); b.textContent = n;
+      b.onclick = ()=> chooseQuotient(n); wrap.appendChild(b);
     });
     document.getElementById('choiceWrap').style.display = "block";
   }
 
   function chooseQuotient(n){
     if(!state.awaitingChoice) return;
-    const cur = parseInt(state.current,10);
+    const cur = Number(state.current);
     const correct = Math.floor(cur/state.divisor);
     const fb = document.getElementById('feedback');
-    if(n!==correct){
-      fb.innerHTML = `<span class="badge no">حاولي مرة أخرى</span> ${n} كبير/صغير لا يناسب ${cur} ÷ ${state.divisor}.`;
-      return;
-    }
-    // صحيح
+    if(n!==correct){ fb.innerHTML = `<span class="no">حاولي مرة أخرى</span>`; return; }
     state.quotient += String(n);
     const product = n * state.divisor;
     const remainder = cur - product;
     state.current = String(remainder);
     state.remainder = remainder;
-    fb.innerHTML = `<span class="badge ok">إجابة صحيحة</span> ${state.divisor} × ${n} = ${product}، والباقي الآن ${remainder}.`;
-    logMsg(`✅ سجّل الحارس <strong>${n}</strong> في الدفتر ➜ طرحنا ${product} من ${cur} فتبقّى <strong>${remainder}</strong>.`);
+    fb.innerHTML = `<span class="ok">✔︎ صحيح</span> ${state.divisor} × ${n} = ${product} — الباقي ${remainder}.`;
+    logMsg(`✅ طرحنا ${product} من ${cur} ➜ الباقي <strong>${remainder}</strong>.`);
     updateTop();
-    // أخفِ الاختيارات حتى إنزال التالي
     document.getElementById('choiceWrap').style.display = "none";
     state.awaitingChoice = false;
     document.getElementById('bringBtn').disabled = false;
 
-    // إذا انتهت الأرقام كلها
-    if(state.idx >= state.digits.length){
-      finish(false);
-    }else{
-      document.getElementById('bringMsg').textContent = "رائع! أنزلي الرقم التالي من الطابور.";
-    }
+    if(state.idx >= state.digits.length){ finish(false); }
+    else{ document.getElementById('bringMsg').textContent = "أنزلي الرقم التالي."; }
   }
 
   function finish(smallAtEnd){
-    state.done = true;
-    state.awaitingChoice = false;
+    state.done = true; state.awaitingChoice = false;
     document.getElementById('bringBtn').disabled = true;
-    let msg = "";
-    if(smallAtEnd){
-      // جميع الأرقام أُنزلت لكن العدد الحالي أصغر من المقسوم عليه
-      msg = `🎉 انتهت الرحلة: الناتج <strong>${state.quotient||0}</strong> والباقي <strong>${parseInt(state.current||"0",10)}</strong>.`;
-    }else{
-      msg = `🎉 انتهت الرحلة: الناتج <strong>${state.quotient||0}</strong> والباقي <strong>${state.remainder||0}</strong>.`;
-    }
+    const rem = smallAtEnd ? Number(state.current||"0") : state.remainder||0;
+    const msg = `🎉 انتهت الرحلة: الناتج <strong>${state.quotient||0}</strong> والباقي <strong>${rem}</strong>.`;
     logMsg(msg);
-    document.getElementById('feedback').innerHTML = `<div class="pill">🎊 ${msg}</div>`;
-    confetti();
+    document.getElementById('feedback').innerHTML = `<span class="pill">🎊 ${msg}</span>`;
   }
 
-  // بسيط جدًا: قلوب ونجوم تتساقط
-  function confetti(){
-    const emojis = ["🎈","🎉","⭐","🎡","🎢","🎊"];
-    let n = 24;
-    const i = setInterval(()=>{
-      const s = document.createElement('div');
-      s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-      s.style.position="fixed";
-      s.style.fontSize = (16+Math.random()*20)+"px";
-      s.style.top = "-10px";
-      s.style.left = (Math.random()*100)+"vw";
-      s.style.transition="transform 2.2s ease, opacity 2.2s ease";
-      s.style.zIndex=9999;
-      document.body.appendChild(s);
-      requestAnimationFrame(()=>{
-        s.style.transform = `translateY(${(80+Math.random()*120)}vh) rotate(${Math.random()*360}deg)`;
-        s.style.opacity = .1;
-      });
-      setTimeout(()=>document.body.removeChild(s),2300);
-      if(--n<=0) clearInterval(i);
-    },80);
-  }
-
-  // اختصارات لوحة المفاتيح
+  // اختصار: Enter = إنزال، الأرقام = اختيار
   document.addEventListener('keydown', (e)=>{
-    // تجاهل أثناء الكتابة في الحقول
     const active = document.activeElement;
     if(active && (active.tagName === 'INPUT' || active.isContentEditable)) return;
-
     if(e.key === 'Enter'){
-      if(!state.awaitingChoice && !document.getElementById('bringBtn').disabled){
-        bringDown();
-      }
+      if(!state.awaitingChoice && !document.getElementById('bringBtn').disabled){ bringDown(); }
     }
-    if(/^[0-9]$/.test(e.key)){
-      if(state.awaitingChoice){
-        chooseQuotient(parseInt(e.key,10));
-      }
-    }
+    if(/^[0-9]$/.test(e.key) && state.awaitingChoice){ chooseQuotient(Number(e.key)); }
   });
 </script>
 </body>
